@@ -3,6 +3,7 @@ interface Todo {
   completed: boolean;
 }
 
+//access the dom
 const btn = document.getElementById("btn")!;
 const input = document.getElementById("todoinput")! as HTMLInputElement;
 const form = document.querySelector("form")!;
@@ -11,6 +12,7 @@ const todolist = document.getElementById("todols")!;
 const todos: Todo[] = readTodos();
 todos.forEach(createTODOElement);
 
+//read todo from local 
 function readTodos(): Todo[] {
   const todoJSON = localStorage.getItem("todos");
   if (todoJSON === null) {
@@ -19,10 +21,12 @@ function readTodos(): Todo[] {
   return JSON.parse(todoJSON);
 }
 
+//save todo to local
 function saveTodo() {
   localStorage.setItem("todos", JSON.stringify(todos));
 }
 
+//sumit todo
 function handleSubmit(e: SubmitEvent) {
   e.preventDefault();
   const newTodo: Todo = {
@@ -35,6 +39,7 @@ function handleSubmit(e: SubmitEvent) {
   input.value = "";
 }
 
+//create todo element to render on screen
 function createTODOElement(todo: Todo) {
   const newLI = document.createElement("li");
   const checkbox = document.createElement("input");
